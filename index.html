@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釣り日誌・記録アプリ【無料】記録・管理アプリ</title>
+    <meta name="description" content="釣果・釣り場・仕掛けを記録して分析。時期別・場所別の釣れやすさを管理。登録不要・完全無料でご利用いただけます。">
+    <link rel="canonical" href="https://appadaycreator.github.io/fishing-diary/">
+    <meta property="og:title" content="釣り日誌・記録アプリ【無料】記録・管理アプリ">
+    <meta property="og:description" content="釣果・釣り場・仕掛けを記録して分析。時期別・場所別の釣れやすさを管理。登録不要・完全無料でご利用いただけます。">
+    <meta property="og:url" content="https://appadaycreator.github.io/fishing-diary/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎣</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.clarity.ms">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+    <!-- Clarity -->
+    <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","s3t9vl8h3v");</script>
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"釣り日誌・記録アプリ","description":"釣果・釣り場・仕掛けを記録して分析。時期別・場所別の釣れやすさを管理。登録不要・完全無料でご利用いただけます。","url":"https://appadaycreator.github.io/fishing-diary/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}</script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background: linear-gradient(135deg, #FEF3C7 0%, #FFFBEB 100%); min-height: 100vh; color: #333; line-height: 1.6; }
+        .site-header { background: #D97706; color: white; padding: 32px 20px; text-align: center; }
+        .site-header .emoji { font-size: 52px; margin-bottom: 8px; }
+        .site-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .site-header p { font-size: 14px; opacity: 0.9; }
+        .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+        .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 16px; }
+        .btn { background: #D97706; color: white; border: none; padding: 14px 24px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; transition: opacity .2s; }
+        .btn:hover { opacity: 0.9; }
+        .btn:active { transform: scale(0.98); }
+        input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 15px; margin-top: 4px; font-family: inherit; }
+        input:focus, select:focus { outline: none; border-color: #D97706; }
+        label { font-size: 13px; font-weight: 600; color: #555; display: block; margin-top: 14px; margin-bottom: 2px; }
+        .result { display: none; }
+        .result.show { display: block; }
+        .result-value { font-size: 36px; font-weight: 700; color: #D97706; text-align: center; padding: 16px 0; }
+        .badge { display: inline-block; background: #D9770620; color: #D97706; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        /* ── サービス固有CSS ── */
+
+        .fish-form {
+          background: #fff;
+          border-radius: 12px;
+          padding: 14px;
+          border: 1.5px solid #fde68a;
+          margin-bottom: 16px;
+        }
+        .fish-form-row {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin-bottom: 12px;
+        }
+        .fish-form-row label {
+          font-size: 12px;
+          font-weight: 700;
+          color: #92400e;
+        }
+        .fish-form-row input, .fish-form-row select, .fish-form-row textarea {
+          border: 1.5px solid #fde68a;
+          border-radius: 8px;
+          padding: 7px 10px;
+          font-size: 14px;
+          outline: none;
+          color: #78350f;
+          background: #fffbeb;
+        }
+        .fish-form-row input:focus, .fish-form-row select:focus, .fish-form-row textarea:focus {
+          border-color: #D97706;
+          box-shadow: 0 0 0 2px rgba(217,119,6,0.1);
+        }
+        .fish-form-row textarea {
+          resize: vertical;
+          min-height: 60px;
+        }
+        .form-grid2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .record-card {
+          background: #fff;
+          border-radius: 12px;
+          padding: 12px 14px;
+          border: 1.5px solid #fde68a;
+          margin-bottom: 8px;
+          position: relative;
+        }
+        .record-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 6px;
+        }
+        .record-fish {
+          font-size: 15px;
+          font-weight: 700;
+          color: #92400e;
+        }
+        .record-date {
+          font-size: 12px;
+          color: #999;
+        }
+        .record-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          margin-top: 4px;
+        }
+        .record-tag {
+          background: #FEF3C7;
+          color: #D97706;
+          border-radius: 999px;
+          padding: 2px 8px;
+          font-size: 11px;
+          font-weight: 600;
+        }
+        .record-note {
+          font-size: 12px;
+          color: #666;
+          margin-top: 6px;
+          border-top: 1px solid #fde68a;
+          padding-top: 6px;
+        }
+        .del-btn {
+          background: none;
+          border: none;
+          color: #d1d5db;
+          cursor: pointer;
+          font-size: 16px;
+          padding: 0 4px;
+          flex-shrink: 0;
+        }
+        .del-btn:hover { color: #ef4444; }
+        .stats-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          margin-bottom: 12px;
+        }
+        .stat-box {
+          background: #FEF3C7;
+          border-radius: 10px;
+          padding: 10px 6px;
+          text-align: center;
+        }
+        .stat-num {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #D97706;
+        }
+        .stat-label {
+          font-size: 11px;
+          color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="site-header">
+        <div class="emoji">🎣</div>
+        <h1>釣り日誌・記録アプリ</h1>
+        <p>釣果・釣り場・仕掛けを記録して分析。時期別・場所別の釣れやすさを管理。</p>
+    </header>
+
+    <main class="container">
+        <ins class="adsbygoogle" style="display:block;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">🎣 釣り日誌・記録アプリ</h2>
+          <p style="font-size:13px;color:#888;margin-bottom:12px;">釣果を記録して分析しましょう</p>
+
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-num" id="statTotal">0</div>
+              <div class="stat-label">記録数</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" id="statFish">0</div>
+              <div class="stat-label">釣果（尾）</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" id="statMax">—</div>
+              <div class="stat-label">最大サイズ</div>
+            </div>
+          </div>
+
+          <details open style="margin-bottom:12px;">
+            <summary style="font-size:14px;font-weight:700;color:#D97706;cursor:pointer;padding:8px 0;">＋ 釣果を記録する</summary>
+            <div class="fish-form" style="margin-top:8px;">
+              <div class="form-grid2">
+                <div class="fish-form-row">
+                  <label>日付</label>
+                  <input type="date" id="fishDate">
+                </div>
+                <div class="fish-form-row">
+                  <label>魚の種類</label>
+                  <input type="text" id="fishName" placeholder="例: アジ">
+                </div>
+              </div>
+              <div class="form-grid2">
+                <div class="fish-form-row">
+                  <label>サイズ (cm)</label>
+                  <input type="number" id="fishSize" placeholder="例: 25" min="1" max="300">
+                </div>
+                <div class="fish-form-row">
+                  <label>匹数</label>
+                  <input type="number" id="fishCount" value="1" min="1">
+                </div>
+              </div>
+              <div class="fish-form-row">
+                <label>釣り場・場所</label>
+                <input type="text" id="fishSpot" placeholder="例: 江の島港">
+              </div>
+              <div class="form-grid2">
+                <div class="fish-form-row">
+                  <label>仕掛け・方法</label>
+                  <select id="fishMethod">
+                    <option>サビキ釣り</option>
+                    <option>ウキ釣り</option>
+                    <option>ルアー</option>
+                    <option>穴釣り</option>
+                    <option>投げ釣り</option>
+                    <option>船釣り</option>
+                    <option>フライ</option>
+                    <option>その他</option>
+                  </select>
+                </div>
+                <div class="fish-form-row">
+                  <label>天気</label>
+                  <select id="fishWeather">
+                    <option>晴れ☀️</option>
+                    <option>曇り☁️</option>
+                    <option>雨🌧️</option>
+                    <option>風強め💨</option>
+                  </select>
+                </div>
+              </div>
+              <div class="fish-form-row">
+                <label>メモ・コツ</label>
+                <textarea id="fishNote" placeholder="例: 朝マヅメに釣れた。イカゴロが効果的。"></textarea>
+              </div>
+              <button class="btn" onclick="addRecord()" style="width:100%;">記録する</button>
+            </div>
+          </details>
+
+          <div id="recordList"></div>
+
+          <div class="result" id="result" style="margin-top:12px;display:none !important;">
+            <div id="resultInner"></div>
+          </div>
+        </div>
+
+        <!-- 関連サービス -->
+        <div class="card" style="margin-top:8px;">
+            <h3 style="font-size:13px;font-weight:600;color:#888;margin-bottom:10px;">🔗 関連サービス</h3>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <a href="https://appadaycreator.github.io/dog-walk-tracker/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">🐕 犬の散歩記録アプリ →</a>
+                <a href="https://appadaycreator.github.io/hobby-cost-simulator/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">🎯 趣味コストシミュレーター →</a>
+                <a href="https://appadaycreator.github.io/hobby-matcher/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">Hobby Matcher →</a>
+            </div>
+        </div>
+
+        <ins class="adsbygoogle" style="display:block;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </main>
+
+    <footer style="text-align:center;padding:20px;color:white;font-size:12px;opacity:0.75;margin-top:8px;">
+        <p><a href="https://appadaycreator.github.io/" style="color:white;">AppADayCreator</a>
+        | <a href="privacy-policy.html" style="color:white;">プライバシーポリシー</a>
+        | <a href="terms.html" style="color:white;">利用規約</a>
+        | <a href="contact.html" style="color:white;">お問い合わせ</a></p>
+        <p style="margin-top:6px;">© 2025 AppADayCreator. All services are free.</p>
+    </footer>
+
+    <script>
+
+    const STORAGE_KEY = 'fishing_diary_v1';
+    let records = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('fishDate').value = today;
+      load();
+      renderAll();
+    });
+
+    function load() {
+      try {
+        records = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch(e) { records = []; }
+    }
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+    }
+
+    function addRecord() {
+      const date    = document.getElementById('fishDate').value;
+      const name    = document.getElementById('fishName').value.trim();
+      const size    = parseFloat(document.getElementById('fishSize').value) || 0;
+      const count   = parseInt(document.getElementById('fishCount').value) || 1;
+      const spot    = document.getElementById('fishSpot').value.trim();
+      const method  = document.getElementById('fishMethod').value;
+      const weather = document.getElementById('fishWeather').value;
+      const note    = document.getElementById('fishNote').value.trim();
+
+      if (!date) { alert('日付を入力してください'); return; }
+      if (!name) { alert('魚の種類を入力してください'); return; }
+
+      const rec = { id: Date.now(), date, name, size, count, spot, method, weather, note };
+      records.unshift(rec);
+      save();
+      renderAll();
+
+      document.getElementById('fishName').value = '';
+      document.getElementById('fishSize').value = '';
+      document.getElementById('fishCount').value = 1;
+      document.getElementById('fishSpot').value = '';
+      document.getElementById('fishNote').value = '';
+    }
+
+    function deleteRecord(id) {
+      if (!confirm('この記録を削除しますか？')) return;
+      records = records.filter(r => r.id !== id);
+      save();
+      renderAll();
+    }
+
+    function renderAll() {
+      renderStats();
+      renderList();
+    }
+
+    function renderStats() {
+      const total = records.length;
+      const totalFish = records.reduce((s, r) => s + r.count, 0);
+      const maxSize = records.length > 0 ? Math.max(...records.map(r => r.size).filter(s => s > 0)) : 0;
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statFish').textContent = totalFish;
+      document.getElementById('statMax').textContent = maxSize > 0 ? maxSize + 'cm' : '—';
+    }
+
+    function renderList() {
+      const el = document.getElementById('recordList');
+      if (records.length === 0) {
+        el.innerHTML = '<div style="text-align:center;color:#aaa;padding:20px;font-size:14px;">まだ記録がありません<br>釣果を記録してみましょう🎣</div>';
+        return;
+      }
+      el.innerHTML = records.map(r => {
+        const tags = [r.method, r.weather];
+        if (r.spot) tags.unshift(r.spot);
+        return `
+          <div class="record-card">
+            <div class="record-header">
+              <div>
+                <div class="record-fish">🐟 ${escHtml(r.name)} ${r.size > 0 ? r.size + 'cm' : ''} × ${r.count}匹</div>
+                <div class="record-date">${r.date}</div>
+              </div>
+              <button class="del-btn" onclick="deleteRecord(${r.id})">🗑</button>
+            </div>
+            <div class="record-tags">${tags.map(t => `<span class="record-tag">${escHtml(t)}</span>`).join('')}</div>
+            ${r.note ? `<div class="record-note">📝 ${escHtml(r.note)}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function escHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    </script>
+</body>
+</html>
