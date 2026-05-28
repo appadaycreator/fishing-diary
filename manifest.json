@@ -1,8 +1,9 @@
 {
   "name": "Fishing Diary",
   "short_name": "fishing-diar",
-  "start_url": "/",
+  "start_url": "/fishing-diary/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#6366f1"
+  "theme_color": "#6366f1",
+  "scope": "/fishing-diary/"
 }
