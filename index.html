@@ -237,6 +237,27 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             </div>
           </div>
 
+          <div style="display:flex;gap:6px;margin:12px 0;flex-wrap:wrap;">
+            <button class="btn" style="flex:1;min-width:120px;padding:10px;font-size:14px;background:#7c3aed;" onclick="exportData()">📥 データ出力</button>
+            <button class="btn" style="flex:1;min-width:120px;padding:10px;font-size:14px;background:#6366f1;" onclick="document.getElementById('importFile').click()">📤 データ読込</button>
+            <button class="btn" style="flex:1;min-width:120px;padding:10px;font-size:14px;background:#ef4444;" onclick="resetData()">🗑 全削除</button>
+            <input type="file" id="importFile" style="display:none;" accept=".json" onchange="importData(event)">
+          </div>
+
+          <div style="margin-bottom:12px;border-bottom:2px solid #fde68a;padding-bottom:8px;">
+            <p style="font-size:13px;font-weight:600;color:#92400e;margin-bottom:8px;">🔍 フィルタ・ソート</p>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;">
+              <button onclick="setFilter('all')" style="padding:6px 12px;background:#FEF3C7;border:1px solid #D97706;border-radius:6px;font-size:12px;font-weight:600;color:#D97706;cursor:pointer;">すべて</button>
+              <button onclick="setFilter('month')" style="padding:6px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;color:#555;cursor:pointer;">当月</button>
+              <button onclick="setFilter('week')" style="padding:6px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;color:#555;cursor:pointer;">今週</button>
+              <select id="sortSelect" style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;" onchange="updateSort()">
+                <option value="recent">最新順</option>
+                <option value="oldest">古い順</option>
+                <option value="size">サイズ順</option>
+              </select>
+            </div>
+          </div>
+
           <details open style="margin-bottom:12px;">
             <summary style="font-size:14px;font-weight:700;color:#D97706;cursor:pointer;padding:8px 0;">＋ 釣果を記録する</summary>
             <div class="fish-form" style="margin-top:8px;">
@@ -301,6 +322,16 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <div class="result" id="result" style="margin-top:12px;display:none !important;">
             <div id="resultInner"></div>
           </div>
+        </div>
+
+        <div class="card">
+          <h2 style="font-size:15px;font-weight:700;margin-bottom:12px;color:#374151;">📊 分析・集計</h2>
+          <div style="display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid #e5e7eb;">
+            <button onclick="showAnalysis('fish')" id="tabFish" style="padding:8px 16px;background:#D97706;color:white;border:none;border-radius:4px 4px 0 0;cursor:pointer;font-size:13px;font-weight:600;">🐟 魚の種類別</button>
+            <button onclick="showAnalysis('spot')" id="tabSpot" style="padding:8px 16px;background:#f1f5f9;color:#666;border:none;border-radius:4px 4px 0 0;cursor:pointer;font-size:13px;font-weight:600;">📍 釣り場別</button>
+            <button onclick="showAnalysis('month')" id="tabMonth" style="padding:8px 16px;background:#f1f5f9;color:#666;border:none;border-radius:4px 4px 0 0;cursor:pointer;font-size:13px;font-weight:600;">📅 月別</button>
+          </div>
+          <div id="analysisContent" style="font-size:13px;"></div>
         </div>
 
         <!-- 関連サービス -->
@@ -375,12 +406,17 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 
     const STORAGE_KEY = 'fishing_diary_v1';
     let records = [];
+    let filteredRecords = [];
+    let currentFilter = 'all';
+    let currentSort = 'recent';
+    let currentAnalysis = 'fish';
 
     document.addEventListener('DOMContentLoaded', () => {
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('fishDate').value = today;
       load();
       renderAll();
+      showAnalysis('fish');
     });
 
     function load() {
@@ -423,9 +459,45 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       records = records.filter(r => r.id !== id);
       save();
       renderAll();
+      showAnalysis(currentAnalysis);
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      applyFiltersAndSort();
+      renderList();
+    }
+
+    function updateSort() {
+      currentSort = document.getElementById('sortSelect').value;
+      applyFiltersAndSort();
+      renderList();
+    }
+
+    function applyFiltersAndSort() {
+      let result = [...records];
+      const today = new Date();
+      const currentMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+      const weekStart = new Date(today);
+      weekStart.setDate(today.getDate() - today.getDay());
+
+      if (currentFilter === 'month') {
+        result = result.filter(r => r.date.startsWith(currentMonth));
+      } else if (currentFilter === 'week') {
+        result = result.filter(r => new Date(r.date) >= weekStart);
+      }
+
+      if (currentSort === 'oldest') {
+        result.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } else if (currentSort === 'size') {
+        result.sort((a, b) => b.size - a.size);
+      }
+
+      filteredRecords = result;
     }
 
     function renderAll() {
+      applyFiltersAndSort();
       renderStats();
       renderList();
     }
@@ -441,11 +513,11 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 
     function renderList() {
       const el = document.getElementById('recordList');
-      if (records.length === 0) {
-        el.innerHTML = '<div style="text-align:center;color:#aaa;padding:20px;font-size:14px;">まだ記録がありません<br>釣果を記録してみましょう🎣</div>';
+      if (filteredRecords.length === 0) {
+        el.innerHTML = '<div style="text-align:center;color:#aaa;padding:20px;font-size:14px;">該当する記録がありません</div>';
         return;
       }
-      el.innerHTML = records.map(r => {
+      el.innerHTML = filteredRecords.map(r => {
         const tags = [r.method, r.weather];
         if (r.spot) tags.unshift(r.spot);
         return `
@@ -462,6 +534,96 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           </div>
         `;
       }).join('');
+    }
+
+    function showAnalysis(type) {
+      currentAnalysis = type;
+      const tabs = document.querySelectorAll('[id^="tab"]');
+      tabs.forEach(t => t.style.background = '#f1f5f9');
+      tabs.forEach(t => t.style.color = '#666');
+      document.getElementById('tab' + type.charAt(0).toUpperCase() + type.slice(1)).style.background = '#D97706';
+      document.getElementById('tab' + type.charAt(0).toUpperCase() + type.slice(1)).style.color = 'white';
+
+      let html = '';
+      if (type === 'fish' && records.length > 0) {
+        const fishData = {};
+        records.forEach(r => {
+          fishData[r.name] = (fishData[r.name] || 0) + r.count;
+        });
+        const sorted = Object.entries(fishData).sort((a, b) => b[1] - a[1]);
+        html = '<div style="display:flex;flex-direction:column;gap:8px;">';
+        sorted.forEach(([name, count], i) => {
+          html += `<div><span style="font-weight:600;">${i + 1}. ${escHtml(name)}</span>: ${count}匹</div>`;
+        });
+        html += '</div>';
+      } else if (type === 'spot' && records.length > 0) {
+        const spotData = {};
+        records.forEach(r => {
+          if (r.spot) spotData[r.spot] = (spotData[r.spot] || 0) + r.count;
+        });
+        const sorted = Object.entries(spotData).sort((a, b) => b[1] - a[1]);
+        html = '<div style="display:flex;flex-direction:column;gap:8px;">';
+        sorted.forEach(([spot, count], i) => {
+          html += `<div><span style="font-weight:600;">${i + 1}. ${escHtml(spot)}</span>: ${count}匹</div>`;
+        });
+        html += '</div>';
+      } else if (type === 'month' && records.length > 0) {
+        const monthData = {};
+        records.forEach(r => {
+          const month = r.date.substring(0, 7);
+          monthData[month] = (monthData[month] || 0) + r.count;
+        });
+        const sorted = Object.entries(monthData).sort().reverse();
+        html = '<div style="display:flex;flex-direction:column;gap:8px;">';
+        sorted.forEach(([month, count]) => {
+          html += `<div><span style="font-weight:600;">${month}</span>: ${count}匹</div>`;
+        });
+        html += '</div>';
+      } else {
+        html = '<div style="text-align:center;color:#aaa;padding:12px;">記録がありません</div>';
+      }
+      document.getElementById('analysisContent').innerHTML = html;
+    }
+
+    function exportData() {
+      const dataStr = JSON.stringify(records, null, 2);
+      const blob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `fishing_diary_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            records = imported;
+            save();
+            renderAll();
+            showAnalysis(currentAnalysis);
+            alert('データを読み込みました');
+          }
+        } catch(err) {
+          alert('ファイルが読み込めません');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function resetData() {
+      if (!confirm('すべてのデータを削除しますか？この操作は戻せません。')) return;
+      records = [];
+      save();
+      renderAll();
+      showAnalysis(currentAnalysis);
     }
 
     function escHtml(str) {
