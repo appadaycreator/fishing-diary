@@ -72,8 +72,24 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .hero{position:relative;overflow:hidden;color:#fff;}
         .hero-bg{position:absolute;inset:0;z-index:0;}
         .hero-bg img{width:100%;height:100%;object-fit:cover;}
-        .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(8,28,60,.86) 0%,rgba(13,52,110,.74) 45%,rgba(37,99,235,.5) 100%);}
-        .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:70px 0 90px;}
+        .hero-bg::after{content:"";position:absolute;inset:0;background:
+            radial-gradient(120% 85% at 16% 8%, rgba(125,211,252,.42) 0%, transparent 46%),
+            radial-gradient(95% 80% at 90% 92%, rgba(14,165,233,.52) 0%, transparent 56%),
+            radial-gradient(70% 60% at 70% 30%, rgba(56,189,248,.30) 0%, transparent 60%),
+            linear-gradient(125deg, rgba(6,26,62,.90) 0%, rgba(14,62,140,.74) 40%, rgba(30,110,210,.58) 70%, rgba(56,160,225,.48) 100%);}
+        /* Water texture + floating bubbles (decorative depth) */
+        .hero-deco{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+        .hero-deco .bub{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),rgba(255,255,255,.06) 60%,transparent 72%);border:1px solid rgba(255,255,255,.18);opacity:.55;animation:floatUp 9s ease-in-out infinite;}
+        .hero-deco .bub:nth-child(1){width:120px;height:120px;left:6%;top:18%;animation-delay:0s;}
+        .hero-deco .bub:nth-child(2){width:60px;height:60px;left:22%;top:62%;animation-delay:1.4s;}
+        .hero-deco .bub:nth-child(3){width:34px;height:34px;left:48%;top:14%;animation-delay:.6s;}
+        .hero-deco .bub:nth-child(4){width:80px;height:80px;right:30%;bottom:14%;animation-delay:2.1s;}
+        .hero-deco .bub:nth-child(5){width:22px;height:22px;right:14%;top:30%;animation-delay:1s;}
+        @keyframes floatUp{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-18px) scale(1.05);}}
+        .hero-wave{position:absolute;left:0;right:0;bottom:-1px;z-index:2;line-height:0;}
+        .hero-wave svg{width:100%;height:70px;display:block;}
+        @media (prefers-reduced-motion:reduce){.hero-deco .bub{animation:none;}}
+        .hero-inner{position:relative;z-index:3;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:70px 0 96px;}
         .hero-badge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:13px;padding:6px 16px;border-radius:999px;margin-bottom:18px;}
         .hero h1{font-size:46px;line-height:1.25;font-weight:900;letter-spacing:-.02em;margin-bottom:18px;text-shadow:0 2px 14px rgba(0,0,0,.25);}
         .hero h1 .hl{color:#7dd3fc;}
@@ -83,10 +99,11 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .hero-tags span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;}
         .hero-tags img{width:16px;height:16px;filter:brightness(0) invert(1);}
         .phones{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:-20px;}
-        .phone{width:170px;border-radius:26px;overflow:hidden;border:6px solid #0b1f3a;box-shadow:0 30px 70px rgba(0,0,0,.45);background:#0b1f3a;}
-        .phone.p1{transform:translateY(20px) rotate(-5deg);z-index:1;}
-        .phone.p2{transform:translateY(-14px);z-index:3;margin:0 -28px;}
-        .phone.p3{transform:translateY(20px) rotate(5deg);z-index:1;}
+        .phones::before{content:"";position:absolute;width:120%;height:120%;left:-10%;top:-10%;background:radial-gradient(closest-side,rgba(125,211,252,.55),rgba(56,189,248,.18) 55%,transparent 72%);filter:blur(8px);z-index:0;}
+        .phone{position:relative;z-index:1;width:170px;border-radius:26px;overflow:hidden;border:6px solid #0b1f3a;box-shadow:0 34px 80px rgba(3,18,46,.6),0 0 0 1px rgba(255,255,255,.08);background:#0b1f3a;}
+        .phone.p1{transform:translateY(24px) rotate(-6deg);z-index:1;}
+        .phone.p2{transform:translateY(-18px) scale(1.04);z-index:3;margin:0 -28px;box-shadow:0 44px 90px rgba(3,18,46,.66),0 0 0 1px rgba(255,255,255,.1);}
+        .phone.p3{transform:translateY(24px) rotate(6deg);z-index:2;}
         /* App-UI mockups inside phone frames (faithful to design 01) */
         .pscreen{width:100%;aspect-ratio:9/19;background:#f4f8ff;display:flex;flex-direction:column;overflow:hidden;text-align:left;color:var(--ink);}
         .ps-top{background:var(--brand);color:#fff;padding:11px 11px 9px;}
@@ -110,12 +127,22 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .ps-map .land{position:absolute;background:#e9f7e6;}
         .ps-map .pin{position:absolute;font-size:13px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
 
+        /* Trust band (deep-blue accent for contrast) */
+        .tband{background:linear-gradient(120deg,#0b2c66 0%,#1648a8 50%,#1f6fd0 100%);color:#fff;}
+        .tband-in{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:30px 0;}
+        .tband .it{display:flex;align-items:center;gap:13px;}
+        .tband .it .ic{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+        .tband .it b{display:block;font-size:15px;font-weight:900;line-height:1.3;}
+        .tband .it span{font-size:12px;color:#bcd6ff;}
+        @media (max-width:920px){.tband-in{grid-template-columns:1fr 1fr;gap:14px;}}
+        @media (max-width:520px){.tband-in{grid-template-columns:1fr;}}
+
         /* Sections */
         section.block{padding:74px 0;}
         .eyebrow{text-align:center;color:var(--brand);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
         .h2{text-align:center;font-size:33px;font-weight:900;letter-spacing:-.02em;line-height:1.3;margin-bottom:14px;}
         .sub{text-align:center;color:var(--muted);font-size:15px;max-width:680px;margin:0 auto 46px;line-height:1.9;}
-        .bg-soft{background:linear-gradient(180deg,#f4f8ff,#eaf3ff);}
+        .bg-soft{background:linear-gradient(180deg,#eef5ff 0%,#dce9fb 100%);border-top:1px solid #e3edfb;border-bottom:1px solid #e3edfb;}
 
         /* Reasons (4 small cards) */
         .reasons{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
@@ -245,6 +272,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="hero-bg"><img src="../assets/photos/photo_01.jpg" alt="海辺で釣りを楽しむ風景" width="1600" height="900"></div>
+      <div class="hero-deco" aria-hidden="true"><span class="bub"></span><span class="bub"></span><span class="bub"></span><span class="bub"></span><span class="bub"></span></div>
       <div class="wrap">
         <div class="hero-inner">
           <div>
@@ -303,6 +331,22 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             </div>
           </div>
         </div>
+      </div>
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,38 C180,68 360,8 540,30 C720,52 900,12 1080,28 C1260,44 1380,58 1440,40 L1440,70 L0,70 Z" fill="#ffffff" opacity=".55"/>
+          <path d="M0,50 C200,30 400,66 600,48 C820,28 1040,64 1260,46 C1350,38 1410,44 1440,48 L1440,70 L0,70 Z" fill="#ffffff"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Trust band -->
+    <section class="tband">
+      <div class="wrap tband-in">
+        <div class="it"><span class="ic">📷</span><div><b>AI写真認識</b><span>魚種をワンタップ判別</span></div></div>
+        <div class="it"><span class="ic">🌊</span><div><b>潮見表・気象連携</b><span>潮位・天気・月齢を自動記録</span></div></div>
+        <div class="it"><span class="ic">📡</span><div><b>オフライン対応</b><span>電波の弱い釣り場でも記録</span></div></div>
+        <div class="it"><span class="ic">💰</span><div><b>登録不要・完全無料</b><span>今日からすぐ使える</span></div></div>
       </div>
     </section>
 
