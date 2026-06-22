@@ -84,10 +84,31 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .hero-tags img{width:16px;height:16px;filter:brightness(0) invert(1);}
         .phones{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:-20px;}
         .phone{width:170px;border-radius:26px;overflow:hidden;border:6px solid #0b1f3a;box-shadow:0 30px 70px rgba(0,0,0,.45);background:#0b1f3a;}
-        .phone img{width:100%;aspect-ratio:9/19;object-fit:cover;}
         .phone.p1{transform:translateY(20px) rotate(-5deg);z-index:1;}
         .phone.p2{transform:translateY(-14px);z-index:3;margin:0 -28px;}
         .phone.p3{transform:translateY(20px) rotate(5deg);z-index:1;}
+        /* App-UI mockups inside phone frames (faithful to design 01) */
+        .pscreen{width:100%;aspect-ratio:9/19;background:#f4f8ff;display:flex;flex-direction:column;overflow:hidden;text-align:left;color:var(--ink);}
+        .ps-top{background:var(--brand);color:#fff;padding:11px 11px 9px;}
+        .ps-top .t{font-size:11px;font-weight:900;line-height:1.2;}
+        .ps-top .s{font-size:8px;opacity:.85;margin-top:1px;}
+        .ps-body{padding:8px;display:flex;flex-direction:column;gap:6px;flex:1;min-height:0;}
+        .ps-row{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #e6eef9;border-radius:9px;padding:5px;}
+        .ps-row img{width:27px;height:27px;border-radius:7px;object-fit:cover;flex-shrink:0;}
+        .ps-row .nm{font-weight:800;font-size:9px;line-height:1.2;}
+        .ps-row .mt{color:var(--muted);font-size:7.5px;}
+        .ps-tag{margin-left:auto;background:#eaf2ff;color:var(--brand);font-weight:800;border-radius:6px;padding:2px 5px;font-size:7.5px;}
+        .ps-kpis{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+        .ps-kpi{background:#fff;border:1px solid #e6eef9;border-radius:9px;padding:7px 4px;text-align:center;}
+        .ps-kpi b{display:block;color:var(--brand);font-size:15px;font-weight:900;line-height:1;}
+        .ps-kpi span{font-size:7px;color:var(--muted);}
+        .ps-chart{background:#fff;border:1px solid #e6eef9;border-radius:9px;padding:7px 6px;flex:1;display:flex;flex-direction:column;}
+        .ps-chart .ttl{font-size:7.5px;font-weight:800;margin-bottom:6px;color:var(--muted);}
+        .ps-bars{display:flex;align-items:flex-end;gap:4px;flex:1;min-height:46px;}
+        .ps-bars i{flex:1;background:linear-gradient(180deg,#60a5fa,#2563EB);border-radius:3px 3px 0 0;}
+        .ps-map{flex:1;position:relative;background:linear-gradient(160deg,#bfe0ff,#7cc0ff 60%,#4aa3f0);border-radius:9px;overflow:hidden;}
+        .ps-map .land{position:absolute;background:#e9f7e6;}
+        .ps-map .pin{position:absolute;font-size:13px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
 
         /* Sections */
         section.block{padding:74px 0;}
@@ -242,9 +263,44 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             </div>
           </div>
           <div class="phones">
-            <div class="phone p1"><img src="../assets/photos/photo_02.jpg" alt="釣果一覧画面のイメージ"></div>
-            <div class="phone p2"><img src="../assets/photos/photo_03.jpg" alt="釣果記録画面のイメージ"></div>
-            <div class="phone p3"><img src="../assets/photos/photo_04.jpg" alt="分析画面のイメージ"></div>
+            <div class="phone p1" role="img" aria-label="釣果一覧画面のイメージ">
+              <div class="pscreen">
+                <div class="ps-top"><div class="t">釣果一覧</div><div class="s">今月 24尾</div></div>
+                <div class="ps-body">
+                  <div class="ps-row"><img src="../assets/photos/photo_19.jpg" alt=""><div><div class="nm">マダイ</div><div class="mt">江の島港・サビキ</div></div><span class="ps-tag">42cm</span></div>
+                  <div class="ps-row"><img src="../assets/photos/photo_07.jpg" alt=""><div><div class="nm">アジ</div><div class="mt">真鶴・サビキ</div></div><span class="ps-tag">28cm</span></div>
+                  <div class="ps-row"><img src="../assets/photos/photo_12.jpg" alt=""><div><div class="nm">メバル</div><div class="mt">三浦・ルアー</div></div><span class="ps-tag">22cm</span></div>
+                  <div class="ps-row"><img src="../assets/photos/photo_08.jpg" alt=""><div><div class="nm">カサゴ</div><div class="mt">城ヶ島・穴釣り</div></div><span class="ps-tag">19cm</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="phone p2" role="img" aria-label="ダッシュボード画面のイメージ">
+              <div class="pscreen">
+                <div class="ps-top"><div class="t">ダッシュボード</div><div class="s">釣果サマリー</div></div>
+                <div class="ps-body">
+                  <div class="ps-kpis">
+                    <div class="ps-kpi"><b>128</b><span>累計釣果</span></div>
+                    <div class="ps-kpi"><b>78.5</b><span>最大cm</span></div>
+                  </div>
+                  <div class="ps-chart"><div class="ttl">月別釣果の推移</div><div class="ps-bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:95%"></i></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="phone p3" role="img" aria-label="お気に入りマップ画面のイメージ">
+              <div class="pscreen">
+                <div class="ps-top"><div class="t">お気に入りマップ</div><div class="s">釣れたポイント</div></div>
+                <div class="ps-body">
+                  <div class="ps-map">
+                    <span class="land" style="width:62%;height:34%;left:-12%;top:16%;border-radius:0 46% 50% 0"></span>
+                    <span class="land" style="width:48%;height:30%;right:-10%;bottom:8%;border-radius:50% 0 0 40%"></span>
+                    <span class="pin" style="left:30%;top:26%">📍</span>
+                    <span class="pin" style="left:58%;top:46%">📍</span>
+                    <span class="pin" style="left:40%;top:64%">📍</span>
+                    <span class="pin" style="left:70%;top:22%">🎣</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -376,6 +432,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             <canvas id="pieChart" height="170"></canvas>
           </div>
         </div>
+        <div class="panel" style="margin-top:20px;">
+          <h4>サイズ記録の推移（cm）</h4>
+          <canvas id="lineChart" height="90"></canvas>
+        </div>
       </div>
     </section>
 
@@ -482,6 +542,14 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             type:'doughnut',
             data:{labels:['アジ','サバ','メバル','カサゴ','その他'],datasets:[{data:[34,26,18,12,10],backgroundColor:['#2563EB','#0ea5e9','#38bdf8','#F97316','#fbbf24'],borderColor:'#fff',borderWidth:2}]},
             options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}}},cutout:'58%'}
+          });
+        }
+        var lineEl = document.getElementById('lineChart');
+        if(lineEl){
+          new Chart(lineEl.getContext('2d'),{
+            type:'line',
+            data:{labels:['3月','4月','5月','6月','7月','8月'],datasets:[{label:'平均サイズ（cm）',data:[22,26,24,31,29,35],borderColor:'#F97316',backgroundColor:'rgba(249,115,22,.12)',fill:true,tension:.35,pointBackgroundColor:'#F97316',pointRadius:3},{label:'最大サイズ（cm）',data:[34,41,38,52,58,78],borderColor:'#2563EB',backgroundColor:'rgba(37,99,235,.08)',fill:true,tension:.35,pointBackgroundColor:'#2563EB',pointRadius:3}]},
+            options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}}},scales:{y:{beginAtZero:true,grid:{color:'#eef3fa'}},x:{grid:{display:false}}}}
           });
         }
       })();
