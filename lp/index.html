@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Consent Mode v2 -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});(function(){try{var k='cookie-consent-v2',o='cookie-consent';var c=localStorage.getItem(k);if(!c&&localStorage.getItem(o)==='1')c='granted';if(c){var s=c==='granted'?'granted':'denied';gtag('consent','update',{'analytics_storage':s,'ad_storage':s,'ad_user_data':s,'ad_personalization':s});}}catch(e){}})();</script>
+<!-- End Consent Mode v2 -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+"https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,"script","dataLayer","GTM-TXQGZRF9");</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563EB" />
+    <title>【無料】釣果AI分析・潮見表連携の釣り日誌アプリ｜Fishing Diary</title>
+    <meta name="description" content="AI写真認識で釣果自動記録。潮見表・気象・マップ機能で次の釣果を予測。タックル相性分析で釣りの成功率UP。登録不要・完全無料の釣り日誌アプリ。">
+    <meta name="author" content="AppADayCreator">
+    <link rel="canonical" href="https://appadaycreator.com/fishing-diary/lp/">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/fishing-diary/manifest.json">
+    <meta property="og:title" content="【無料】釣果AI分析・潮見表連携の釣り日誌アプリ｜Fishing Diary">
+    <meta property="og:description" content="AI写真認識で釣果自動記録。潮見表・気象・マップ機能で次の釣果を予測。タックル相性分析で釣りの成功率UP。">
+    <meta property="og:url" content="https://appadaycreator.com/fishing-diary/lp/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:image" content="https://appadaycreator.com/fishing-diary/ogp.png">
+    <meta property="og:site_name" content="appadaycreator" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="【無料】釣果AI分析・潮見表連携の釣り日誌アプリ｜Fishing Diary" />
+    <meta name="twitter:description" content="AI写真認識で釣果自動記録。潮見表・気象・マップ機能で次の釣果を予測。" />
+    <meta name="twitter:image" content="https://appadaycreator.com/fishing-diary/ogp.png" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎣</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"釣り日誌・記録アプリ Fishing Diary","description":"AI写真認識で釣果自動記録。潮見表・気象・マップ機能で次の釣果を予測。タックル相性分析で釣りの成功率UP。","url":"https://appadaycreator.com/fishing-diary/lp/","applicationCategory":"UtilityApplication","operatingSystem":"Any","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"author":{"@type":"Organization","name":"AppADayCreator","url":"https://appadaycreator.com/"}}</script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        :root{--brand:#2563EB;--brand-d:#1d4ed8;--accent:#F97316;--ink:#0f2747;--muted:#5b6b82;--bg:#f4f8ff;}
+        html{scroll-behavior:smooth;}
+        body{font-family:'Inter','Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.7;-webkit-font-smoothing:antialiased;}
+        a{color:inherit;}
+        img{display:block;max-width:100%;}
+        .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+        .btn-primary{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;font-size:16px;padding:15px 32px;border-radius:999px;box-shadow:0 12px 26px rgba(37,99,235,.32);transition:filter .2s,transform .2s;}
+        .btn-primary:hover{filter:brightness(1.06);transform:translateY(-2px);}
+        .btn-accent{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:16px;padding:15px 32px;border-radius:999px;box-shadow:0 12px 26px rgba(249,115,22,.4);transition:filter .2s,transform .2s;}
+        .btn-accent:hover{filter:brightness(1.06);transform:translateY(-2px);}
+        .btn-ghost{display:inline-block;background:#fff;color:var(--brand);text-decoration:none;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;border:2px solid #cfe0fb;transition:border-color .2s;}
+        .btn-ghost:hover{border-color:var(--brand);}
+
+        /* Header */
+        .nav{position:sticky;top:0;z-index:600;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #e6eef9;}
+        .nav-inner{display:flex;align-items:center;gap:20px;height:66px;}
+        .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .brand-mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#2563EB,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:21px;}
+        .brand-text strong{display:block;font-size:18px;font-weight:900;line-height:1;}
+        .brand-text small{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;}
+        .nav-links{display:flex;gap:26px;margin-left:auto;}
+        .nav-links a{text-decoration:none;font-weight:600;font-size:14px;color:#334155;}
+        .nav-links a:hover{color:var(--brand);}
+        .nav .btn-accent{padding:10px 22px;font-size:14px;}
+
+        /* Hero */
+        .hero{position:relative;overflow:hidden;color:#fff;}
+        .hero-bg{position:absolute;inset:0;z-index:0;}
+        .hero-bg img{width:100%;height:100%;object-fit:cover;}
+        .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(8,28,60,.86) 0%,rgba(13,52,110,.74) 45%,rgba(37,99,235,.5) 100%);}
+        .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:70px 0 90px;}
+        .hero-badge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:13px;padding:6px 16px;border-radius:999px;margin-bottom:18px;}
+        .hero h1{font-size:46px;line-height:1.25;font-weight:900;letter-spacing:-.02em;margin-bottom:18px;text-shadow:0 2px 14px rgba(0,0,0,.25);}
+        .hero h1 .hl{color:#7dd3fc;}
+        .hero p.lead{font-size:16px;line-height:1.95;opacity:.95;margin-bottom:28px;max-width:540px;}
+        .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;}
+        .hero-tags{display:flex;gap:10px;flex-wrap:wrap;}
+        .hero-tags span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;}
+        .hero-tags img{width:16px;height:16px;filter:brightness(0) invert(1);}
+        .phones{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:-20px;}
+        .phone{width:170px;border-radius:26px;overflow:hidden;border:6px solid #0b1f3a;box-shadow:0 30px 70px rgba(0,0,0,.45);background:#0b1f3a;}
+        .phone img{width:100%;aspect-ratio:9/19;object-fit:cover;}
+        .phone.p1{transform:translateY(20px) rotate(-5deg);z-index:1;}
+        .phone.p2{transform:translateY(-14px);z-index:3;margin:0 -28px;}
+        .phone.p3{transform:translateY(20px) rotate(5deg);z-index:1;}
+
+        /* Sections */
+        section.block{padding:74px 0;}
+        .eyebrow{text-align:center;color:var(--brand);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+        .h2{text-align:center;font-size:33px;font-weight:900;letter-spacing:-.02em;line-height:1.3;margin-bottom:14px;}
+        .sub{text-align:center;color:var(--muted);font-size:15px;max-width:680px;margin:0 auto 46px;line-height:1.9;}
+        .bg-soft{background:linear-gradient(180deg,#f4f8ff,#eaf3ff);}
+
+        /* Reasons (4 small cards) */
+        .reasons{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+        .reason{background:#fff;border:1px solid #e6eef9;border-radius:18px;padding:26px 22px;text-align:center;box-shadow:0 10px 28px rgba(15,39,71,.05);}
+        .reason .ic{width:62px;height:62px;border-radius:16px;background:#eaf2ff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+        .reason .ic img{width:34px;height:34px;}
+        .reason h3{font-size:16px;font-weight:800;margin-bottom:8px;}
+        .reason p{font-size:13px;color:var(--muted);line-height:1.8;}
+
+        /* Smart (3 large cards w/ photos) */
+        .smart{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .scard{background:#fff;border:1px solid #e6eef9;border-radius:20px;overflow:hidden;box-shadow:0 14px 36px rgba(15,39,71,.08);}
+        .scard-photo{aspect-ratio:16/10;overflow:hidden;}
+        .scard-photo img{width:100%;height:100%;object-fit:cover;}
+        .scard-body{padding:24px 24px 28px;position:relative;}
+        .scard .ic{width:54px;height:54px;border-radius:14px;background:#fff;border:3px solid #fff;box-shadow:0 8px 20px rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;margin:-50px 0 14px;background:#eaf2ff;}
+        .scard .ic img{width:30px;height:30px;}
+        .scard h3{font-size:19px;font-weight:900;margin-bottom:10px;}
+        .scard p{font-size:14px;color:var(--muted);line-height:1.9;}
+
+        /* Steps */
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .step{background:#fff;border:1px solid #e6eef9;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(15,39,71,.07);}
+        .step-photo{aspect-ratio:16/10;position:relative;overflow:hidden;}
+        .step-photo img{width:100%;height:100%;object-fit:cover;}
+        .step-num{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-weight:900;font-size:15px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.25);}
+        .step-body{padding:22px 22px 26px;}
+        .step-body h3{font-size:18px;font-weight:900;margin-bottom:8px;}
+        .step-body p{font-size:13.5px;color:var(--muted);line-height:1.85;}
+
+        /* Dashboard / data */
+        .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px;}
+        .kpi{background:#fff;border:1px solid #e6eef9;border-radius:18px;padding:24px 18px;text-align:center;box-shadow:0 10px 26px rgba(15,39,71,.06);}
+        .kpi .n{font-size:40px;font-weight:900;color:var(--brand);line-height:1;letter-spacing:-.02em;}
+        .kpi .n .u{font-size:18px;}
+        .kpi .l{font-size:13px;color:var(--muted);margin-top:8px;font-weight:600;}
+        .charts{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;}
+        .panel{background:#fff;border:1px solid #e6eef9;border-radius:20px;padding:22px;box-shadow:0 12px 30px rgba(15,39,71,.06);}
+        .panel h4{font-size:15px;font-weight:800;margin-bottom:14px;color:var(--ink);}
+
+        /* Comparison */
+        .cmp{max-width:760px;margin:0 auto;border-radius:20px;overflow:hidden;border:1px solid #e6eef9;box-shadow:0 16px 40px rgba(15,39,71,.08);}
+        .cmp table{width:100%;border-collapse:collapse;background:#fff;}
+        .cmp th,.cmp td{padding:16px 18px;text-align:left;font-size:14px;border-bottom:1px solid #eef3fa;}
+        .cmp thead th{font-size:14px;font-weight:800;}
+        .cmp thead th:nth-child(2){color:var(--muted);text-align:center;background:#f8fafc;}
+        .cmp thead th:nth-child(3){color:#fff;text-align:center;background:var(--brand);}
+        .cmp td:first-child{font-weight:700;color:var(--ink);}
+        .cmp td:nth-child(2){text-align:center;color:#94a3b8;}
+        .cmp td:nth-child(3){text-align:center;color:var(--brand);font-weight:800;background:#f3f8ff;}
+
+        /* Gallery */
+        .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+        .gitem{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 10px 26px rgba(15,39,71,.08);}
+        .gitem img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+        .gitem:hover img{transform:scale(1.06);}
+        .gitem .cap{position:absolute;left:0;right:0;bottom:0;padding:24px 16px 12px;background:linear-gradient(transparent,rgba(8,28,60,.8));color:#fff;font-size:13px;font-weight:700;}
+
+        /* FAQ */
+        .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:920px;margin:0 auto;}
+        details.q{background:#fff;border:1px solid #e6eef9;border-radius:14px;padding:4px 18px;box-shadow:0 8px 20px rgba(15,39,71,.05);}
+        details.q summary{list-style:none;cursor:pointer;font-weight:700;font-size:14.5px;padding:14px 0;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+        details.q summary::-webkit-details-marker{display:none;}
+        details.q summary::after{content:"+";color:var(--brand);font-size:20px;font-weight:700;}
+        details.q[open] summary::after{content:"−";}
+        details.q p{font-size:13.5px;color:var(--muted);line-height:1.9;padding:0 0 16px;}
+
+        /* CTA */
+        .cta{position:relative;overflow:hidden;color:#fff;text-align:center;padding:80px 24px;}
+        .cta-bg{position:absolute;inset:0;z-index:0;}
+        .cta-bg img{width:100%;height:100%;object-fit:cover;}
+        .cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(8,28,60,.9),rgba(29,78,216,.78));}
+        .cta-in{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+        .cta h2{font-size:34px;font-weight:900;line-height:1.35;margin-bottom:16px;text-shadow:0 2px 14px rgba(0,0,0,.25);}
+        .cta p{font-size:15px;opacity:.94;margin-bottom:28px;line-height:1.9;}
+
+        /* Footer */
+        footer.ft{background:#0b1f3a;color:#cbd6e6;padding:48px 24px 28px;}
+        .ft-grid{max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start;}
+        .ft .brand-text strong{color:#fff;}
+        .ft-links{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;}
+        .ft-links a{color:#a9b9d0;text-decoration:none;}
+        .ft-links a:hover{color:#fff;}
+        .ft-copy{text-align:center;font-size:12px;color:#7b8aa3;margin-top:28px;border-top:1px solid #1c365c;padding-top:20px;}
+
+        @media (max-width:920px){
+          .hero-inner{grid-template-columns:1fr;text-align:center;padding:54px 0 70px;}
+          .hero p.lead{margin-left:auto;margin-right:auto;}
+          .hero-cta,.hero-tags{justify-content:center;}
+          .phones{margin-top:36px;}
+          .reasons{grid-template-columns:1fr 1fr;}
+          .smart,.steps{grid-template-columns:1fr;}
+          .dash{grid-template-columns:1fr 1fr;}
+          .charts{grid-template-columns:1fr;}
+          .gallery{grid-template-columns:1fr 1fr;}
+          .faq{grid-template-columns:1fr;}
+          .nav-links{display:none;}
+          .hero h1{font-size:34px;}
+          .h2{font-size:27px;}
+        }
+        @media (max-width:520px){
+          .reasons,.dash,.gallery{grid-template-columns:1fr;}
+          .phone{width:130px;}
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Header -->
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">🎣</span>
+          <span class="brand-text"><strong>Fishing Diary</strong><small>釣り日誌・記録アプリ</small></span>
+        </a>
+        <nav class="nav-links" aria-label="ナビゲーション">
+          <a href="#reasons">特徴</a>
+          <a href="#steps">使い方</a>
+          <a href="#data">分析</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn-accent" href="../">無料で始める</a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-bg"><img src="../assets/photos/photo_01.jpg" alt="海辺で釣りを楽しむ風景" width="1600" height="900"></div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div>
+            <span class="hero-badge">【無料】登録不要</span>
+            <h1>釣果<span class="hl">AI分析</span>・潮見表連携の<br>釣り日誌アプリ</h1>
+            <p class="lead">写真を撮るだけでAIが魚種を自動判別。潮見表・気象・月齢データを自動連携し、釣果から次の最適な釣り場を提案します。記録が、次の一匹につながる。</p>
+            <div class="hero-cta">
+              <a class="btn-accent" href="../">無料で始める</a>
+              <a class="btn-ghost" href="#steps">使い方を見る</a>
+            </div>
+            <div class="hero-tags">
+              <span><img src="../assets/icons/split/01-04.png" alt="">AI写真認識</span>
+              <span><img src="../assets/icons/split/02-01.png" alt="">潮見表・気象連携</span>
+              <span><img src="../assets/icons/split/07-06.png" alt="">タックル相性AI</span>
+              <span><img src="../assets/icons/split/06-03.png" alt="">オフライン対応</span>
+            </div>
+          </div>
+          <div class="phones">
+            <div class="phone p1"><img src="../assets/photos/photo_02.jpg" alt="釣果一覧画面のイメージ"></div>
+            <div class="phone p2"><img src="../assets/photos/photo_03.jpg" alt="釣果記録画面のイメージ"></div>
+            <div class="phone p3"><img src="../assets/photos/photo_04.jpg" alt="分析画面のイメージ"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reasons -->
+    <section class="block" id="reasons">
+      <div class="wrap">
+        <p class="eyebrow">Why Fishing Diary</p>
+        <h2 class="h2">釣れた理由が、記録からわかる。</h2>
+        <p class="sub">「なんとなく」を「データ」に。釣果・条件・タックルを記録するほど、あなただけの釣りパターンが見えてきます。</p>
+        <div class="reasons">
+          <div class="reason">
+            <div class="ic"><img src="../assets/icons/split/01-04.png" alt=""></div>
+            <h3>AI写真認識</h3>
+            <p>釣果を撮影するだけでAIが魚種を自動判別。面倒な入力を省いてワンタップで記録できます。</p>
+          </div>
+          <div class="reason">
+            <div class="ic"><img src="../assets/icons/split/02-01.png" alt=""></div>
+            <h3>潮見表・気象連携</h3>
+            <p>潮位・天気・月齢を自動で記録に紐付け。釣果と条件の関係を正確に分析できます。</p>
+          </div>
+          <div class="reason">
+            <div class="ic"><img src="../assets/icons/split/07-06.png" alt=""></div>
+            <h3>タックル相性AI</h3>
+            <p>ロッド・リール・ルアーの組み合わせを学習し、釣果データから最適なタックルを提案します。</p>
+          </div>
+          <div class="reason">
+            <div class="ic"><img src="../assets/icons/split/01-03.png" alt=""></div>
+            <h3>釣り場レコメンド</h3>
+            <p>過去の記録から、次に釣れやすい最適なポイントとタイミングをスマートに提案します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad -->
+    <div class="wrap" style="padding-bottom:20px;">
+      <ins class="adsbygoogle" style="display:block;min-height:90px" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
+    </div>
+
+    <!-- Smart cards -->
+    <section class="block bg-soft">
+      <div class="wrap">
+        <p class="eyebrow">Smart Recording</p>
+        <h2 class="h2">釣り記録を、ここまでスマートに。</h2>
+        <p class="sub">撮影・記録・分析・共有まで。釣りに必要なすべてをワンストップで完結できます。</p>
+        <div class="smart">
+          <div class="scard">
+            <div class="scard-photo"><img src="../assets/photos/photo_20.jpg" alt="ワンタップ撮影記録"></div>
+            <div class="scard-body">
+              <div class="ic"><img src="../assets/icons/split/01-01.png" alt=""></div>
+              <h3>ワンタップ撮影記録</h3>
+              <p>写真を撮るだけで魚種・サイズ・場所・天気を自動入力。記録の手間を限りなくゼロに近づけます。</p>
+            </div>
+          </div>
+          <div class="scard">
+            <div class="scard-photo"><img src="../assets/photos/photo_21.jpg" alt="釣果シェア・ランキング"></div>
+            <div class="scard-body">
+              <div class="ic"><img src="../assets/icons/split/03-02.png" alt=""></div>
+              <h3>シェア＆ランキング</h3>
+              <p>釣果をSNSでシェアしたり、みんなのランキングで腕試し。釣り仲間とのつながりが広がります。</p>
+            </div>
+          </div>
+          <div class="scard">
+            <div class="scard-photo"><img src="../assets/photos/photo_22.jpg" alt="ヒートマップ・パフォーマンス分析"></div>
+            <div class="scard-body">
+              <div class="ic"><img src="../assets/icons/split/01-07.png" alt=""></div>
+              <h3>ヒートマップ分析</h3>
+              <p>月別・場所別のパフォーマンスをヒートマップで比較。釣れやすい条件がひと目で分かります。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="block" id="steps">
+      <div class="wrap">
+        <p class="eyebrow">How to use</p>
+        <h2 class="h2">かんたん3ステップ</h2>
+        <p class="sub">難しい設定は不要。撮って、記録して、分析するだけ。今日からすぐに始められます。</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-photo"><img src="../assets/photos/photo_05.jpg" alt="釣果を撮影"><span class="step-num">1</span></div>
+            <div class="step-body">
+              <h3>撮って記録</h3>
+              <p>釣れた魚を撮影するだけ。AIが魚種を判別し、潮位・天気・場所を自動でひも付けます。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-photo"><img src="../assets/photos/photo_06.jpg" alt="データを蓄積"><span class="step-num">2</span></div>
+            <div class="step-body">
+              <h3>データを蓄積</h3>
+              <p>記録を重ねるほどデータが充実。カレンダー・マップ・統計で釣行を見える化します。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-photo"><img src="../assets/photos/photo_13.jpg" alt="次の釣果へ活かす"><span class="step-num">3</span></div>
+            <div class="step-body">
+              <h3>次の一匹へ</h3>
+              <p>AIが最適な釣り場・タイミング・タックルを提案。データが次の釣果につながります。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data / Dashboard -->
+    <section class="block bg-soft" id="data">
+      <div class="wrap">
+        <p class="eyebrow">Data Insights</p>
+        <h2 class="h2">記録が、次の一匹につながる。</h2>
+        <p class="sub">蓄積したデータをグラフ・ヒートマップで分析。あなたの釣果が数字で見えるようになります。</p>
+        <div class="dash">
+          <div class="kpi"><div class="n">128<span class="u">尾</span></div><div class="l">累計釣果</div></div>
+          <div class="kpi"><div class="n">58.7<span class="u">%</span></div><div class="l">ヒット率</div></div>
+          <div class="kpi"><div class="n">78.5<span class="u">cm</span></div><div class="l">最大サイズ</div></div>
+          <div class="kpi"><div class="n">24<span class="u">日</span></div><div class="l">釣行日数</div></div>
+        </div>
+        <div class="charts">
+          <div class="panel">
+            <h4>月別釣果の推移</h4>
+            <canvas id="barChart" height="170"></canvas>
+          </div>
+          <div class="panel">
+            <h4>魚種別の割合</h4>
+            <canvas id="pieChart" height="170"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Comparison</p>
+        <h2 class="h2">釣果記録だけで、終わらせない。</h2>
+        <p class="sub">記録するだけのアプリではなく、次の釣果へ導く「次世代の釣り日誌」です。</p>
+        <div class="cmp">
+          <table>
+            <thead>
+              <tr><th>機能</th><th>一般的なアプリ</th><th>Fishing Diary</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>AI写真で魚種自動判別</td><td>×</td><td>○</td></tr>
+              <tr><td>潮見表・気象・月齢の自動連携</td><td>△</td><td>○</td></tr>
+              <tr><td>タックル相性AIアドバイス</td><td>×</td><td>○</td></tr>
+              <tr><td>釣り場スマートレコメンド</td><td>×</td><td>○</td></tr>
+              <tr><td>ヒートマップ・月別比較</td><td>△</td><td>○</td></tr>
+              <tr><td>オフライン対応・無料利用</td><td>△</td><td>○</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="block bg-soft">
+      <div class="wrap">
+        <p class="eyebrow">For Everyone</p>
+        <h2 class="h2">初心者から、本格的なアングラーまで。</h2>
+        <p class="sub">堤防のサビキ釣りから本格的なショアジギングまで。あらゆる釣りスタイルに寄り添います。</p>
+        <div class="gallery">
+          <div class="gitem"><img src="../assets/photos/photo_14.jpg" alt="堤防釣り"><span class="cap">堤防・漁港の釣り</span></div>
+          <div class="gitem"><img src="../assets/photos/photo_15.jpg" alt="ルアーフィッシング"><span class="cap">ルアーフィッシング</span></div>
+          <div class="gitem"><img src="../assets/photos/photo_16.jpg" alt="船釣り"><span class="cap">船釣り・沖釣り</span></div>
+          <div class="gitem"><img src="../assets/photos/photo_17.jpg" alt="渓流釣り"><span class="cap">渓流・管理釣り場</span></div>
+          <div class="gitem"><img src="../assets/photos/photo_18.jpg" alt="ファミリーフィッシング"><span class="cap">ファミリー釣行</span></div>
+          <div class="gitem"><img src="../assets/photos/photo_19.jpg" alt="大物釣り"><span class="cap">大物・青物狙い</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block" id="faq">
+      <div class="wrap">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2">よくあるご質問</h2>
+        <p class="sub">ご利用前の疑問にお答えします。</p>
+        <div class="faq">
+          <details class="q" open><summary>本当に無料で使えますか？</summary><p>はい、登録不要・完全無料でご利用いただけます。釣果記録・分析・マップなど主要機能はすべて無料です。</p></details>
+          <details class="q"><summary>会員登録やアプリのインストールは必要ですか？</summary><p>不要です。ブラウザからすぐに使い始められます。データはお使いの端末内に保存されます。</p></details>
+          <details class="q"><summary>記録したデータはどこに保存されますか？</summary><p>ご使用のブラウザのローカルストレージに保存されます。サーバーに送信されないためプライバシーも安心です。</p></details>
+          <details class="q"><summary>オフラインでも使えますか？</summary><p>ローカルファースト設計のため、電波の届きにくい釣り場でも記録できます。後でデータを確認・分析できます。</p></details>
+          <details class="q"><summary>機種変更時にデータは引き継げますか？</summary><p>データのエクスポート／インポート機能で、別の端末へ記録を引き継げます。</p></details>
+          <details class="q"><summary>どんな釣りに対応していますか？</summary><p>海釣り・川釣り・船釣りなど、あらゆるスタイルに対応。魚種や仕掛けも自由に記録できます。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="cta-bg"><img src="../assets/photos/photo_11.jpg" alt="" aria-hidden="true"></div>
+      <div class="cta-in">
+        <h2>次の釣果は、データでもっと伸ばせる。</h2>
+        <p>登録不要・完全無料。今日の一匹を記録することから、あなたの釣りは変わり始めます。</p>
+        <a class="btn-accent" href="../" style="font-size:18px;padding:17px 44px;">無料で始める</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ft">
+      <div class="ft-grid">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">🎣</span>
+          <span class="brand-text"><strong>Fishing Diary</strong><small>釣り日誌・記録アプリ</small></span>
+        </a>
+        <div class="ft-links">
+          <a href="../">アプリを開く</a>
+          <a href="../privacy-policy.html">プライバシーポリシー</a>
+          <a href="../terms.html">利用規約</a>
+          <a href="../contact.html">お問い合わせ</a>
+          <a href="https://appadaycreator.com/">AppADayCreator</a>
+        </div>
+      </div>
+      <p class="ft-copy">© 2026 AppADayCreator. All services are free. ｜ 本サービスはアフィリエイト広告を掲載しています。</p>
+    </footer>
+
+    <script>
+      (function(){
+        if(typeof Chart === 'undefined') return;
+        var barEl = document.getElementById('barChart');
+        if(barEl){
+          new Chart(barEl.getContext('2d'),{
+            type:'bar',
+            data:{labels:['3月','4月','5月','6月','7月','8月'],datasets:[{label:'釣果（尾）',data:[12,18,15,24,21,28],backgroundColor:'#2563EB',borderRadius:6}]},
+            options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#eef3fa'}},x:{grid:{display:false}}}}
+          });
+        }
+        var pieEl = document.getElementById('pieChart');
+        if(pieEl){
+          new Chart(pieEl.getContext('2d'),{
+            type:'doughnut',
+            data:{labels:['アジ','サバ','メバル','カサゴ','その他'],datasets:[{data:[34,26,18,12,10],backgroundColor:['#2563EB','#0ea5e9','#38bdf8','#F97316','#fbbf24'],borderColor:'#fff',borderWidth:2}]},
+            options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}}},cutout:'58%'}
+          });
+        }
+      })();
+    </script>
+</body>
+</html>
